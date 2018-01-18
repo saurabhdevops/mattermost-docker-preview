@@ -37,7 +37,7 @@ objects:
           deploymentconfig: ${DEPLOYMENT_NAME}
       spec:
         containers:
-        - image: 'docker-registry.default.svc:5000/${NAMESPACE}/mattermost:${IMAGE_TAG}'
+        - image: 'saurabhdevops/mattermost-docker-preview' #'docker-registry.default.svc:5000/${NAMESPACE}/mattermost:${IMAGE_TAG}'
           imagePullPolicy: Always
           name: ${DEPLOYMENT_NAME}
           terminationMessagePath: /dev/termination-log
@@ -53,15 +53,6 @@ objects:
         restartPolicy: Always
     triggers:
     - type: ConfigChange
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-        - ${DEPLOYMENT_NAME}
-        from:
-          kind: ImageStreamTag
-          namespace: ${NAMESPACE}
-          name: 'mattermost:${IMAGE_TAG}'
-      type: ImageChange
       
 - apiVersion: v1
   kind: Route
