@@ -29,8 +29,9 @@ RUN chmod +x ./docker-entry.sh
 ENTRYPOINT ./docker-entry.sh
 
 # Create default storage directory
-RUN mkdir ./mattermost-data
-VOLUME ./mattermost-data
+# Commented as this causes deployments to fail on openshift
+# RUN mkdir ./mattermost-data
+# VOLUME ./mattermost-data
 
 # Ports
 EXPOSE 8065
